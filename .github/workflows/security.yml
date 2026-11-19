@@ -1,0 +1,26 @@
+
+name: Security Scan
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install Bandit
+        run: pip install bandit==1.9.4
+
+      - name: Run Security Scan
+        run: bandit -ll app.py
