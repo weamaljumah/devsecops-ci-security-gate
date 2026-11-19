@@ -1,5 +1,4 @@
 
-def greet(name):
-    return f"Hello, {name}!"
+import subprocess
 
-print(greet("Developer"))
+subprocess.run("echo hello", shell=True)
